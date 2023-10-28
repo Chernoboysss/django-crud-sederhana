@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD sederhana</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <center><h1>Data db_readdata</h1></center>
+        <table class="table mt-5">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Npm</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Tanggal-lahir</th>
+                <th scope="col">Alamat</th>
+                <th scope="col">Opsi</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for mahasiswa in data %}
+              <tr>
+                <td scope="row">{{forloop.counter}}</td>
+                <td>{{ mahasiswa.npm }}</td>
+                <td>{{ mahasiswa.nama }}</td>
+                <td>{{ mahasiswa.tgl_lahir}}</td>
+                <td>{{mahasiswa.alamat}}</td>
+                <td>
+                  <input type="button" class="btn btn-outline-warning" onclick="location.href='updatedata/{{mahasiswa.npm}}';" value=" Edit" />
+                  <a type="button" class="btn btn-outline-danger" href="deletedata/{{mahasiswa.npm}}" onclick="return confirm('Anda yakin mau menghapus data ini?');">Delete</a>
+                </td>
+              </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+          <center><a href="/insert" class="btn btn-primary">Add New Record</a></center>  
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+         $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+</body>
+
+</html>
